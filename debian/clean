@@ -1,0 +1,5 @@
+.phpunit.cache/
+.phpunit.result.cache
+autoload.php
+autoload.php.tpl
+vendor/

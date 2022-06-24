@@ -1,0 +1,11 @@
+#!/bin/sh
+
+VENDOR="debian/wp-cli/usr/share/php/WP_CLI/vendor"
+
+while read LINE
+do
+	VENDORPHP=$(echo "$LINE" | awk '{ print $1 }')
+	PHPPKG=$(echo "$LINE" | awk '{ print $2 }')
+	rm -rf "${VENDOR}/${VENDORPHP}"
+	ln -s "$PHPPKG" "${VENDOR}/${VENDORPHP}"
+done < debian/vendor-package-mapping.txt

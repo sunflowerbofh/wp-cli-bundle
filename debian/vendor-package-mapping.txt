@@ -1,0 +1,9 @@
+symfony/process /usr/share/php/Symfony/Component/Process
+symfony/finder /usr/share/php/Symfony/Component/Finder
+symfony/filesystem /usr/share/php/Symfony/Component/Filesystem
+symfony/debug /usr/share/php/Symfony/Component/Debug
+symfony/polyfill-ctype /usr/share/php/Symfony/Polyfill/Ctype
+symfony/polyfill-mbstring /usr/share/php/Symfony/Polyfill/Mbstring
+symfony/console /usr/share/php/Symfony/Component/Console
+psr/log/Psr/Log /usr/share/php/Psr/Log
+gettext/languages/src /usr/share/php/Gettext/Languages

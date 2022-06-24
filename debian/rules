@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+
+VENDOR = debian/wp-cli/usr/share/php/WP_CLI/vendor
+
+%:
+	dh $@ --with phpcomposer
+
+execute_before_dh_auto_build:
+	# create vendor dir
+	composer install --no-dev --no-progress --no-interaction \
+		--prefer-dist
+	# Build a template for phpab(1)
+	# (not needed if the package has no dependency)
+	phpabtpl \
+		--basedir php \
+		composer.json \
+		> autoload.php.tpl
+
+	if ! grep -q 'vendor/autoload.php.tpl' autoload.php.tpl; then \
+	sed -i "/\\/\\/ Require/a require_once '../vendor/autoload.php" autoload.php.tpl; fi
+
+	# Build a static classloader, shipped with the package
+	# Following[last] line only needed if a template was built
+	phpab --tolerant --output autoload.php --template autoload.php.tpl \
+		vendor/wp-cli/wp-cli/php
+
+execute_after_dh_install:
+	# installing bash-completion
+	mkdir -p debian/wp-cli/usr/share/bash-completion/completions
+	mv $(VENDOR)/wp-cli/wp-cli/utils/wp-completion.bash \
+		debian/wp-cli/usr/share/bash-completion/completions/wp
+
+	# removing unused files
+	rm -rf $(VENDOR)/wp-cli/wp-cli/utils
+	rm -f $(VENDOR)/wp-cli/wp-cli/bin/wp.bat
+	rm -f $(VENDOR)/gettext/languages/bin/export-plural-rules.bat
+	find $(VENDOR) -name ".git*" -exec rm -rf {} \+
+
+	# use debian packages instead of vendor dir
+	debian/bin/symlink-php-package
+
+execute_after_dh_fixperms:
+	find $(VENDOR) -name "*.sh" -exec chmod a+x {} \+
+	find $(VENDOR) ! -path "*bin*" -name "*.php" -exec chmod a-x {} \+
+	find $(VENDOR) -name "*.bat" -exec chmod a+x {} \+

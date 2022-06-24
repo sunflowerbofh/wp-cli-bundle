@@ -1,0 +1,5 @@
+wp-cli (2.6.0-1) unstable; urgency=medium
+
+  * Initial release. (For rolling out wordpress)
+
+ -- Katharina Drexel <katharina.drexel@bfh.ch>  Fri, 24 Jun 2022 13:24:33 +0200

@@ -1,0 +1,42 @@
+Source: wp-cli
+Section: php
+Priority: optional
+Maintainer: Katharina Drexel <katharina.drexel@bfh.ch>
+Build-Depends:
+ composer,
+ debhelper-compat (= 13),
+ phpab,
+ pkg-php-tools,
+Rules-Requires-Root: no
+Standards-Version: 4.6.1
+Homepage: http://wp-cli.org
+Vcs-Browser: https://github.com/sunflowerbofh/wp-cli-bundle
+Vcs-Git: https://github.com/sunflowerbofh/wp-cli-bundle.git
+
+Package: wp-cli
+Architecture: all
+Depends:
+ php-cli,
+ php-gettext-languages,
+ php-psr-log,
+ php-symfony-console,
+ php-symfony-debug,
+ php-symfony-filesystem,
+ php-symfony-finder,
+ php-symfony-polyfill-ctype,
+ php-symfony-polyfill-mbstring,
+ php-symfony-process,
+ ${misc:Depends},
+Suggests:
+ ${phpcomposer:Debian-suggest},
+Replaces:
+ ${phpcomposer:Debian-replace},
+Breaks:
+ ${phpcomposer:Debian-conflict},
+ ${phpcomposer:Debian-replace},
+Provides:
+ ${phpcomposer:Debian-provide},
+Description: command-line interface for WordPress
+ wp-cli is a set of command-line tools for managing WordPress installations.
+ It can update plugins, set up multisite installations and much more, without
+ using a web browser.
