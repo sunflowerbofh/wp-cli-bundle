@@ -24,7 +24,7 @@ execute_before_dh_auto_build:
 	phpab --tolerant --output autoload.php --template autoload.php.tpl \
 		vendor/wp-cli/wp-cli/php
 
-execute_after_dh_install:
+execute_before_dh_builddeb:
 	# installing bash-completion
 	mkdir -p debian/wp-cli/usr/share/bash-completion/completions
 	mv $(VENDOR)/wp-cli/wp-cli/utils/wp-completion.bash \
