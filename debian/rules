@@ -32,6 +32,7 @@ execute_before_dh_builddeb:
 
 	# removing unused files
 	rm -rf $(VENDOR)/wp-cli/wp-cli/utils
+	rm -f $(VENDOR)/bin/wp.bat
 	rm -f $(VENDOR)/wp-cli/wp-cli/bin/wp.bat
 	rm -f $(VENDOR)/gettext/languages/bin/export-plural-rules.bat
 	find $(VENDOR) -name ".git*" -exec rm -rf {} \+

@@ -1,1 +1,8 @@
-wp-cli: embedded-php-library please use php-*
+wp-cli: absolute-symlink-in-top-level-folder /usr/share/php/* [usr/share/php/WP_CLI/vendor/*]
+wp-cli: md5sums-lists-nonexistent-file usr/share/php/WP_CLI/vendor/*
+wp-cli: extra-license-file [usr/share/php/WP_CLI/vendor/*/LICENSE]
+wp-cli: extra-license-file [usr/share/php/WP_CLI/vendor/wp-cli/mustangostang-spyc/COPYING]
+wp-cli: package-contains-documentation-outside-usr-share-doc [usr/share/php/WP_CLI/vendor/*.md]
+wp-cli: package-contains-documentation-outside-usr-share-doc [usr/share/php/WP_CLI/vendor/*/LICENSE]
+wp-cli: package-contains-documentation-outside-usr-share-doc [usr/share/php/WP_CLI/vendor/*LICENSE.txt]
+wp-cli: package-contains-empty-directory [usr/share/php/WP_CLI/vendor/mustache/mustache/vendor/*]
