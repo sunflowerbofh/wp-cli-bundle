@@ -24,12 +24,13 @@ execute_before_dh_auto_build:
 	phpab --tolerant --output autoload.php --template autoload.php.tpl \
 		vendor/wp-cli/wp-cli/php
 
-execute_before_dh_builddeb:
+execute_before_dh_md5sums:
 	# installing bash-completion
 	mkdir -p debian/wp-cli/usr/share/bash-completion/completions
 	mv $(VENDOR)/wp-cli/wp-cli/utils/wp-completion.bash \
 		debian/wp-cli/usr/share/bash-completion/completions/wp
 
+execute_before_dh_builddeb:
 	# removing unused files
 	rm -rf $(VENDOR)/wp-cli/wp-cli/utils
 	rm -f $(VENDOR)/bin/wp.bat
